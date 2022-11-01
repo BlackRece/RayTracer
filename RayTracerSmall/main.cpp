@@ -20,6 +20,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // [/ignore]
+
+//TODO: add memmory manager
+//TODO: Ray Tracing Tree - parralele and cache friendly
+//TODO: Limit light bounces
+//TODO: Prune Ray Tracing tree branches
+//TODO: add adjustment to shadow rays (0.00001)
+//TODO: consider recursive ray tracing
+//NOTE: Computing Reflection Direction = r = d - 2 (d . n) n
 #include <stdlib.h>
 #include <cstdio>
 #include <cmath>
@@ -138,6 +146,7 @@ Vec3f trace(
 	const std::vector<Sphere> &spheres,
 	const int &depth)
 {
+	// TODO: Optimize this function
 	//if (raydir.length() != 1) std::cerr << "Error " << raydir << std::endl;
 	float tnear = INFINITY;
 	const Sphere* sphere = NULL;
@@ -190,6 +199,7 @@ Vec3f trace(
 			refraction * (1 - fresneleffect) * sphere->transparency) * sphere->surfaceColor;
 	}
 	else {
+		// TODO: Optimise this loop
 		// it's a diffuse object, no need to raytrace any further
 		for (unsigned i = 0; i < spheres.size(); ++i) {
 			if (spheres[i].emissionColor.x > 0) {
@@ -233,6 +243,8 @@ void render(const std::vector<Sphere> &spheres, int iteration)
 	float invWidth = 1 / float(width), invHeight = 1 / float(height);
 	float fov = 30, aspectratio = width / float(height);
 	float angle = tan(M_PI * 0.5 * fov / 180.);
+	
+	// TODO: Optimise this loop
 	// Trace rays
 	for (unsigned y = 0; y < height; ++y) {
 		for (unsigned x = 0; x < width; ++x, ++pixel) {
@@ -279,7 +291,7 @@ void SimpleShrinking()
 {
 	std::vector<Sphere> spheres;
 	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
-
+	// TODO: Optimise this loop
 	for (int i = 0; i < 4; i++)
 	{
 		if (i == 0)
@@ -323,6 +335,7 @@ void SmoothScaling()
 	std::vector<Sphere> spheres;
 	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
 
+	//TODO: Optimise this loop
 	for (float r = 0; r <= 100; r++)
 	{
 		spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
