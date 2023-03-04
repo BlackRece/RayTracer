@@ -147,6 +147,7 @@
     <ClCompile Include="MemoryManager\MemoryManager.cpp" />
     <ClCompile Include="MemoryManager\Pool.cpp" />
     <ClCompile Include="MemoryManager\Util.cpp" />
+    <ClCompile Include="RayTracer\Tracer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MemoryManager\Heap.h" />
@@ -154,10 +155,22 @@
     <ClInclude Include="MemoryManager\Pool.h" />
     <ClInclude Include="MemoryManager\Structures.h" />
     <ClInclude Include="MemoryManager\Util.h" />
+    <ClInclude Include="RayTracer\JsonLoader.h" />
     <ClInclude Include="RayTracer\Sphere.h" />
     <ClInclude Include="RayTracer\Vec3.h" />
+    <ClInclude Include="RayTracer\Tracer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\nlohmann.json.3.11.2\build\native\nlohmann.json.targets" Condition="Exists('..\packages\nlohmann.json.3.11.2\build\native\nlohmann.json.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\nlohmann.json.3.11.2\build\native\nlohmann.json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\nlohmann.json.3.11.2\build\native\nlohmann.json.targets'))" />
+  </Target>
 </Project>

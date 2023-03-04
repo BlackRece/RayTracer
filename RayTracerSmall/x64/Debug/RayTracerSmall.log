@@ -1,132 +1,146 @@
-﻿  main.cpp
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(45,1): warning C4005: 'INFINITY': macro redefinition
+﻿  Heap.cpp
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\MemoryManager\Heap.cpp(139,6): warning C4129: 'C': unrecognized character escape sequence
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\MemoryManager\Heap.cpp(155,6): warning C4129: 'C': unrecognized character escape sequence
+  main.cpp
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.h(20,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.h(23,1): warning C4005: 'INFINITY': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(88,1): message : see previous definition of 'INFINITY'
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(98,19): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(104,60): warning C4305: 'argument': truncation from 'double' to 'const float'
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(104,32): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(113,19): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(168,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(172,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(173,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(201,81): warning C4305: 'argument': truncation from 'double' to 'T'
+  MemoryManager.cpp
+  Pool.cpp
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\MemoryManager\Pool.cpp(64,25): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\MemoryManager\Pool.cpp(104,6): warning C4129: 'C': unrecognized character escape sequence
+  Util.cpp
+  Tracer.cpp
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.h(20,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.h(23,1): warning C4005: 'INFINITY': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(88,1): message : see previous definition of 'INFINITY'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(43,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(49,60): warning C4305: 'argument': truncation from 'double' to 'const float'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(49,32): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(58,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(113,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(117,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(118,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(146,81): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(202,72): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(147,72): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(203,73): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(148,73): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(204,72): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(149,72): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(220,83): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(165,83): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(221,74): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(166,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(222,75): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(167,75): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(223,74): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(168,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(228,83): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(173,83): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(229,74): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(174,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(230,75): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(175,75): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(231,74): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(176,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(235,83): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(180,83): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(236,74): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(181,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(237,75): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(182,75): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(238,74): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(183,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(242,83): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(187,83): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(243,74): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(188,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(244,75): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(189,75): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(245,74): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(190,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(261,82): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(206,82): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(262,79): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(207,79): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(263,74): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(208,74): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(264,73): warning C4305: 'argument': truncation from 'double' to 'T'
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(209,73): warning C4305: 'argument': truncation from 'double' to 'T'
           with
           [
               T=float
           ]
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\main.cpp(265,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.cpp(210,19): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   RayTracerSmall.vcxproj -> D:\GitHub\LLCourse\RayTracer\x64\Debug\RayTracerSmall.exe
