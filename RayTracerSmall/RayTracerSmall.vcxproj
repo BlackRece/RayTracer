@@ -142,7 +142,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MemoryManager\Heap.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MemoryManager\MemoryManager.cpp" />
+    <ClCompile Include="MemoryManager\Pool.cpp" />
+    <ClCompile Include="MemoryManager\Util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MemoryManager\Heap.h" />
+    <ClInclude Include="MemoryManager\MemoryManager.h" />
+    <ClInclude Include="MemoryManager\Pool.h" />
+    <ClInclude Include="MemoryManager\Structures.h" />
+    <ClInclude Include="MemoryManager\Util.h" />
+    <ClInclude Include="RayTracer\Sphere.h" />
+    <ClInclude Include="RayTracer\Vec3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

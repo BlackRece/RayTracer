@@ -20,14 +20,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // [/ignore]
-
-//TODO: add memmory manager
-//TODO: Ray Tracing Tree - parralele and cache friendly
-//TODO: Limit light bounces
-//TODO: Prune Ray Tracing tree branches
-//TODO: add adjustment to shadow rays (0.00001)
-//TODO: consider recursive ray tracing
-//NOTE: Computing Reflection Direction = r = d - 2 (d . n) n
 #include <stdlib.h>
 #include <cstdio>
 #include <cmath>
@@ -35,6 +27,11 @@
 #include <vector>
 #include <iostream>
 #include <cassert>
+
+#include "RayTracer/Vec3.h"
+#include "RayTracer/Sphere.h"
+
+#include "MemoryManager\MemoryManager.h"
 // Windows only
 #include <algorithm>
 #include <sstream>
@@ -47,78 +44,6 @@
 #define M_PI 3.141592653589793
 #define INFINITY 1e8
 #endif
-
-template<typename T>
-class Vec3
-{
-public:
-	T x, y, z;
-	Vec3() : x(T(0)), y(T(0)), z(T(0)) {}
-	Vec3(T xx) : x(xx), y(xx), z(xx) {}
-	Vec3(T xx, T yy, T zz) : x(xx), y(yy), z(zz) {}
-	Vec3& normalize()
-	{
-		T nor2 = length2();
-		if (nor2 > 0) {
-			T invNor = 1 / sqrt(nor2);
-			x *= invNor, y *= invNor, z *= invNor;
-		}
-		return *this;
-	}
-	Vec3<T> operator * (const T &f) const { return Vec3<T>(x * f, y * f, z * f); }
-	Vec3<T> operator * (const Vec3<T> &v) const { return Vec3<T>(x * v.x, y * v.y, z * v.z); }
-	T dot(const Vec3<T> &v) const { return x * v.x + y * v.y + z * v.z; }
-	Vec3<T> operator - (const Vec3<T> &v) const { return Vec3<T>(x - v.x, y - v.y, z - v.z); }
-	Vec3<T> operator + (const Vec3<T> &v) const { return Vec3<T>(x + v.x, y + v.y, z + v.z); }
-	Vec3<T>& operator += (const Vec3<T> &v) { x += v.x, y += v.y, z += v.z; return *this; }
-	Vec3<T>& operator *= (const Vec3<T> &v) { x *= v.x, y *= v.y, z *= v.z; return *this; }
-	Vec3<T> operator - () const { return Vec3<T>(-x, -y, -z); }
-	T length2() const { return x * x + y * y + z * z; }
-	T length() const { return sqrt(length2()); }
-	friend std::ostream & operator << (std::ostream &os, const Vec3<T> &v)
-	{
-		os << "[" << v.x << " " << v.y << " " << v.z << "]";
-		return os;
-	}
-};
-
-typedef Vec3<float> Vec3f;
-
-class Sphere
-{
-public:
-	Vec3f center;                           /// position of the sphere
-	float radius, radius2;                  /// sphere radius and radius^2
-	Vec3f surfaceColor, emissionColor;      /// surface color and emission (light)
-	float transparency, reflection;         /// surface transparency and reflectivity
-	Sphere(
-		const Vec3f &c,
-		const float &r,
-		const Vec3f &sc,
-		const float &refl = 0,
-		const float &transp = 0,
-		const Vec3f &ec = 0) :
-		center(c), radius(r), radius2(r * r), surfaceColor(sc), emissionColor(ec),
-		transparency(transp), reflection(refl)
-	{ /* empty */
-	}
-	//[comment]
-	// Compute a ray-sphere intersection using the geometric solution
-	//[/comment]
-	bool intersect(const Vec3f &rayorig, const Vec3f &raydir, float &t0, float &t1) const
-	{
-		Vec3f l = center - rayorig;
-		float tca = l.dot(raydir);
-		if (tca < 0) return false;
-		float d2 = l.dot(l) - tca * tca;
-		if (d2 > radius2) return false;
-		float thc = sqrt(radius2 - d2);
-		t0 = tca - thc;
-		t1 = tca + thc;
-
-		return true;
-	}
-};
 
 //[comment]
 // This variable controls the maximum recursion depth
@@ -146,7 +71,6 @@ Vec3f trace(
 	const std::vector<Sphere> &spheres,
 	const int &depth)
 {
-	// TODO: Optimize this function
 	//if (raydir.length() != 1) std::cerr << "Error " << raydir << std::endl;
 	float tnear = INFINITY;
 	const Sphere* sphere = NULL;
@@ -199,7 +123,6 @@ Vec3f trace(
 			refraction * (1 - fresneleffect) * sphere->transparency) * sphere->surfaceColor;
 	}
 	else {
-		// TODO: Optimise this loop
 		// it's a diffuse object, no need to raytrace any further
 		for (unsigned i = 0; i < spheres.size(); ++i) {
 			if (spheres[i].emissionColor.x > 0) {
@@ -243,8 +166,6 @@ void render(const std::vector<Sphere> &spheres, int iteration)
 	float invWidth = 1 / float(width), invHeight = 1 / float(height);
 	float fov = 30, aspectratio = width / float(height);
 	float angle = tan(M_PI * 0.5 * fov / 180.);
-	
-	// TODO: Optimise this loop
 	// Trace rays
 	for (unsigned y = 0; y < height; ++y) {
 		for (unsigned x = 0; x < width; ++x, ++pixel) {
@@ -257,7 +178,7 @@ void render(const std::vector<Sphere> &spheres, int iteration)
 	}
 	// Save result to a PPM image (keep these flags if you compile under Windows)
 	std::stringstream ss;
-	ss << "./spheres" << iteration << ".ppm";
+	ss << "./Images/spheres" << iteration << ".ppm";
 	std::string tempString = ss.str();
 	char* filename = (char*)tempString.c_str();
 
@@ -291,7 +212,7 @@ void SimpleShrinking()
 {
 	std::vector<Sphere> spheres;
 	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
-	// TODO: Optimise this loop
+
 	for (int i = 0; i < 4; i++)
 	{
 		if (i == 0)
@@ -335,7 +256,6 @@ void SmoothScaling()
 	std::vector<Sphere> spheres;
 	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
 
-	//TODO: Optimise this loop
 	for (float r = 0; r <= 100; r++)
 	{
 		spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
@@ -356,6 +276,9 @@ void SmoothScaling()
 //[/comment]
 int main(int argc, char **argv)
 {
+	MemoryManager::init();
+	MemoryManager::enablePooling(false);
+
 	// This sample only allows one choice per program execution. Feel free to improve upon this
 	srand(13);
 	//BasicRender();
