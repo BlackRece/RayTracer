@@ -49,6 +49,7 @@
 enum RenderMode { Basic, Simple, Smooth };
 
 RenderMode _eMode;
+bool _bUseThreading;
 
 float mix(const float &a, const float &b, const float &mix)
 {
@@ -63,6 +64,7 @@ static void ShowUsage(std::string name) {
 		<< "\n--basic:\tBasicRender"
 		<< "\n--simple:\tSimpleShrinking" 
 		<< "\n--smooth:\tSmoothScaling (default)" 
+		<< "\n--thread:\tUse Multi-Threading"
 		<< "\n\nExample:\n\t"
 		<< name << " --json settings.json --basic" 
 		<< std::endl;
@@ -93,6 +95,8 @@ bool ParseArgs(int argc, char** argv)
 
 		if (argv[i] == "--smooth")
 			_eMode = RenderMode::Smooth;
+
+		_bUseThreading = argv[i] == "--thread" ? true : false;
 	}
 
 	return true;
@@ -108,7 +112,8 @@ int main(int argc, char **argv)
 	MemoryManager::init();
 	MemoryManager::enablePooling(false);
 
-	_eMode = RenderMode::Smooth;
+	_eMode = RenderMode::Simple;
+	_bUseThreading = false;
 	
 	if (argc < 2) {
 		std::cout
@@ -132,7 +137,7 @@ int main(int argc, char **argv)
 	switch (_eMode)
 	{
 		case Basic: tracer->BasicRender(); break;
-		case Simple: tracer->SimpleShrinking(); break;
+		case Simple: tracer->SimpleShrinking(_bUseThreading); break;
 		case Smooth:
 		default: tracer->SmoothScaling(); break;
 	}

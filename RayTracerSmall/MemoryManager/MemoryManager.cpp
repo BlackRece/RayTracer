@@ -70,7 +70,7 @@ void operator delete(void* pMem)
 void MemoryManager::init(bool bDebugMobe)
 {
 	MemoryManager::m_bDebugMode = bDebugMobe;
-
+	///beacon code: 536286
 	if (!isDebugEnabled())
 	{
 		std::cout

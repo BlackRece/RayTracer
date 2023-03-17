@@ -156,7 +156,7 @@ void Tracer::BasicRender()
 void Tracer::SimpleShrinking(bool bUseThreading)
 {
 	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
-	std::vector<std::thread> threads;
+	std::vector<std::shared_ptr<std::pthread_t>> vecThreads;
 	
 	{
 		std::vector<Sphere> spheres;
@@ -166,8 +166,13 @@ void Tracer::SimpleShrinking(bool bUseThreading)
 		spheres.push_back(Sphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0));
 		spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
 			
-		if(bUseThreading)
-			threads.push_back(std::thread(&Tracer::render, this, std::ref(spheres), 0));
+		if (bUseThreading)
+		{
+			//threads.push_back(std::thread(&Tracer::render, this, std::ref(spheres), 0));
+			std::shared_ptr<std::pthread_t> pThread = std::make_shared<std::pthread_t>();
+			pthread_create(&pThread, this, &Tracer::render, std::ref(spheres));
+			vecThreads.push_back(std::move(pThread));
+		}
 		else
 		{
 			render(spheres, 0);
@@ -184,7 +189,8 @@ void Tracer::SimpleShrinking(bool bUseThreading)
 		spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
 			
 		if(bUseThreading)
-			threads.push_back(std::thread(&Tracer::render, this, std::ref(spheres), 1));
+			//threads.push_back(std::thread(&Tracer::render, this, std::ref(spheres), 1));
+			int iSize = spheres.size();
 		else
 		{
 			render(spheres, 1);
@@ -201,7 +207,8 @@ void Tracer::SimpleShrinking(bool bUseThreading)
 		spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
 			
 		if(bUseThreading)
-			threads.push_back(std::thread(&Tracer::render, this, std::ref(spheres), 2));
+			//threads.push_back(std::thread(&Tracer::render, this, std::ref(spheres), 2));
+			int iSize = spheres.size();
 		else
 		{
 			render(spheres, 2);
@@ -218,7 +225,8 @@ void Tracer::SimpleShrinking(bool bUseThreading)
 		spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
 			
 		if(bUseThreading)
-			threads.push_back(std::thread(&Tracer::render, this, std::ref(spheres), 3));
+			//threads.push_back(std::thread(&Tracer::render, this, std::ref(spheres), 3));
+			int iSize = spheres.size();
 		else
 		{
 			render(spheres, 3);
@@ -228,8 +236,8 @@ void Tracer::SimpleShrinking(bool bUseThreading)
 
 	if (bUseThreading)
 	{
-		for (std::thread &t : threads)
-			t.join();
+		for (std::shared_ptr<std::thread> &t : vecThreads)
+			t->join();
 	}
 
 	// Dont forget to clear the Vector holding the spheres.

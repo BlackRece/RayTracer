@@ -10,21 +10,9 @@
 #include <iostream>
 #include <cassert>
 
+#include <pthread.h>
+
 #include "Sphere.h"
-
-// Windows only
-#include <algorithm>
-#include <sstream>
-#include <string.h>
-
-#ifndef __linux__ || __APPLE__
-#include <thread>
-// Windows doesn't define these values by default, Linux does
-#define M_PI 3.141592653589793
-#define INFINITY 1e8
-#else
-
-#endif // !__linux__ || __APPLE__
 
 //[comment]
 // This variable controls the maximum recursion depth
