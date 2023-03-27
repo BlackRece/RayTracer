@@ -15,7 +15,6 @@
       <Filter>MemoryManager</Filter>
     </ClCompile>
     <ClCompile Include="RayTracer\Tracer.cpp" />
-    <ClCompile Include="RayTracer\TracerLinux.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MemoryManager">
@@ -45,7 +44,6 @@
     <ClInclude Include="RayTracer\Sphere.h" />
     <ClInclude Include="RayTracer\JsonLoader.h" />
     <ClInclude Include="RayTracer\Tracer.h" />
-    <ClInclude Include="RayTracer\TracerLinux.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

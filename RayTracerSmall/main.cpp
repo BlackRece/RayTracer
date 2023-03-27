@@ -27,8 +27,10 @@
 #include <vector>
 #include <iostream>
 #include <cassert>
+#include <chrono>
 
 #include "RayTracer/Tracer.h"
+#include "RayTracer/JsonLoader.h"
 //#include "RayTracer/Vec3.h"
 //#include "RayTracer/Sphere.h"
 
@@ -46,10 +48,28 @@
 //#define INFINITY 1e8
 //#endif
 
-enum RenderMode { Basic, Simple, Smooth };
+enum RenderMode { 
+	None	= -1,
+	Basic	= 0,
+	Simple	= 1,
+	Smooth	= 2
+};
+
+struct SettingsJSON
+{
+	RenderMode eMode = RenderMode::None;
+	
+	// Use threading in SimpleShrinking
+	bool bUseThreading;
+	
+	// Number of spheres in SmoothScaling
+	int iSphereCount;
+};
+NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(SettingsJSON, eMode, bUseThreading, iSphereCount);
 
 RenderMode _eMode;
 bool _bUseThreading;
+SettingsJSON _settings;
 
 float mix(const float &a, const float &b, const float &mix)
 {
@@ -60,7 +80,7 @@ static void ShowUsage(std::string name) {
 	std::cout 
 		<< "\nUsage: " << name << " [options]" 
 		<< "\n/ or ?:\tdisplays this information."
-		<< "\n--json:\tload setttings from JSON file" 
+		<< "\n--json:\tload setttings from JSON file (.json)" 
 		<< "\n--basic:\tBasicRender"
 		<< "\n--simple:\tSimpleShrinking" 
 		<< "\n--smooth:\tSmoothScaling (default)" 
@@ -85,6 +105,13 @@ bool ParseArgs(int argc, char** argv)
 			sFile = argv[i + 1];
 			if (sFile.find_last_of(".json") < 1)
 				return false;
+			
+			JsonLoading::LoadJson(_settings, sFile);
+			_eMode = _settings.eMode;
+			_bUseThreading = _settings.bUseThreading;
+			
+			if (_settings.eMode != RenderMode::None)
+				return true;
 		}
 
 		if (argv[i] == "--basic")
@@ -112,7 +139,7 @@ int main(int argc, char **argv)
 	MemoryManager::init();
 	MemoryManager::enablePooling(false);
 
-	_eMode = RenderMode::Simple;
+	_eMode = RenderMode::Smooth;
 	_bUseThreading = false;
 	
 	if (argc < 2) {
@@ -127,20 +154,45 @@ int main(int argc, char **argv)
 		ShowUsage(argv[0]);
 		return 1;
 	}
-	
 
 	auto tracer = new Tracer();
+	int iSphereCount = _settings.eMode != RenderMode::None
+		? _settings.iSphereCount
+		: 100;
 	
 	// This sample only allows one choice per program execution. Feel free to improve upon this
 	srand(13);
 	
+	std::string sMode;
+	auto iStart = std::chrono::high_resolution_clock::now();
+
 	switch (_eMode)
 	{
-		case Basic: tracer->BasicRender(); break;
-		case Simple: tracer->SimpleShrinking(_bUseThreading); break;
+		case Basic: 
+			sMode = "BasicRender";
+			tracer->BasicRender(); 
+			break;
+		case Simple: 
+			sMode = "SimpleShrinking";
+			tracer->SimpleShrinking(_bUseThreading); 
+			break;
 		case Smooth:
-		default: tracer->SmoothScaling(); break;
+			sMode = "SmoothScaling";
+			
+			tracer->SmoothScaling(iSphereCount);
+			break;
 	}
+
+	auto iStop = std::chrono::high_resolution_clock::now();
+
+	std::cout 
+		<< "Render Mode: " << sMode 
+		<< "\nTime taken: " 
+		<< std::chrono::duration_cast<std::chrono::milliseconds>(iStop - iStart).count() 
+		<< "ms" << std::endl;
+
+	_settings = { _eMode, _bUseThreading, iSphereCount};
+	JsonLoading::SaveJson(_settings, "LastUsedSettings.json");
 
 	return 0;
 }

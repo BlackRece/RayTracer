@@ -1,5 +1,5 @@
 ﻿  main.cpp
 D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.h(20,1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.h(23,1): warning C4005: 'INFINITY': macro redefinition
+D:\GitHub\LLCourse\RayTracer\RayTracerSmall\RayTracer\Tracer.h(24,1): warning C4005: 'INFINITY': macro redefinition
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt_math.h(88,1): message : see previous definition of 'INFINITY'
   RayTracerSmall.vcxproj -> D:\GitHub\LLCourse\RayTracer\x64\Debug\RayTracerSmall.exe

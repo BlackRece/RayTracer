@@ -235,15 +235,15 @@ void Tracer::SimpleShrinking(bool bUseThreading)
 	// Dont forget to clear the Vector holding the spheres.
 }
 
-void Tracer::SmoothScaling()
+void Tracer::SmoothScaling(int sphereCount)
 {
 	std::vector<Sphere> spheres;
 	// Vector structure for Sphere (position, radius, surface color, reflectivity, transparency, emission color)
 
-	for (float r = 0; r <= 100; r++)
+	for (float r = 0; r <= sphereCount; r++)
 	{
 		spheres.push_back(Sphere(Vec3f(0.0, -10004, -20), 10000, Vec3f(0.20, 0.20, 0.20), 0, 0.0));
-		spheres.push_back(Sphere(Vec3f(0.0, 0, -20), r / 100, Vec3f(1.00, 0.32, 0.36), 1, 0.5)); // Radius++ change here
+		spheres.push_back(Sphere(Vec3f(0.0, 0, -20), r / sphereCount, Vec3f(1.00, 0.32, 0.36), 1, 0.5)); // Radius++ change here
 		spheres.push_back(Sphere(Vec3f(5.0, -1, -15), 2, Vec3f(0.90, 0.76, 0.46), 1, 0.0));
 		spheres.push_back(Sphere(Vec3f(5.0, 0, -25), 3, Vec3f(0.65, 0.77, 0.97), 1, 0.0));
 		render(spheres, r);

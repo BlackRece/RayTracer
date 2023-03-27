@@ -36,7 +36,7 @@ class Tracer
 public:
 	void BasicRender();
 	void SimpleShrinking(bool bUseThreading = false);
-	void SmoothScaling();
+	void SmoothScaling(int sphereCount = 100);
 	
 private:
 	Vec3f trace(

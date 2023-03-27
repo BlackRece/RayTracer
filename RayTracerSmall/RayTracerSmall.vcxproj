@@ -148,7 +148,6 @@
     <ClCompile Include="MemoryManager\Pool.cpp" />
     <ClCompile Include="MemoryManager\Util.cpp" />
     <ClCompile Include="RayTracer\Tracer.cpp" />
-    <ClCompile Include="RayTracer\TracerLinux.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MemoryManager\Heap.h" />
@@ -158,7 +157,6 @@
     <ClInclude Include="MemoryManager\Util.h" />
     <ClInclude Include="RayTracer\JsonLoader.h" />
     <ClInclude Include="RayTracer\Sphere.h" />
-    <ClInclude Include="RayTracer\TracerLinux.h" />
     <ClInclude Include="RayTracer\Vec3.h" />
     <ClInclude Include="RayTracer\Tracer.h" />
   </ItemGroup>
