@@ -1,5 +1,5 @@
 {
-    "bUseThreading": false,
+    "bUseThreading": true,
     "eMode": 3,
     "iSphereCount": 100
 }
