@@ -163,6 +163,10 @@ int main(int argc, char **argv)
 	// This sample only allows one choice per program execution. Feel free to improve upon this
 	srand(13);
 	
+	// Testing
+	_bUseThreading = true;
+	_eMode = RenderMode::Simple;
+	
 	std::string sMode;
 	auto iStart = std::chrono::high_resolution_clock::now();
 
@@ -184,12 +188,16 @@ int main(int argc, char **argv)
 	}
 
 	auto iStop = std::chrono::high_resolution_clock::now();
-
-	std::cout 
-		<< "Render Mode: " << sMode 
+	std::string sThreading = _bUseThreading ? " (Multi-Threaded)" : " (Single-Threaded)";
+	std::cout << std::endl
+		<< "\n/-----------------\\"
+		<< "\nRendering Complete!"
+		<< "\n\\-----------------/"
+		<< "\n\nRender Mode: " << sMode 
 		<< "\nTime taken: " 
-		<< std::chrono::duration_cast<std::chrono::milliseconds>(iStop - iStart).count() 
-		<< "ms" << std::endl;
+		<< std::chrono::duration_cast<std::chrono::milliseconds>(iStop - iStart).count() << "ms" 
+		<< "\nThreading Mode:" << sThreading 
+		<< std::endl << std::endl;
 
 	_settings = { _eMode, _bUseThreading, iSphereCount};
 	JsonLoading::SaveJson(_settings, "LastUsedSettings.json");
