@@ -164,8 +164,8 @@ int main(int argc, char **argv)
 	srand(13);
 	
 	// Testing
-	_bUseThreading = true;
-	_eMode = RenderMode::Simple;
+	//_bUseThreading = true;
+	//_eMode = RenderMode::Simple;
 	
 	std::string sMode;
 	auto iStart = std::chrono::high_resolution_clock::now();
