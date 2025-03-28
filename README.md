@@ -141,3 +141,20 @@ Developed for the **Computer Games Programming** degree module at [University Na
 - BVH acceleration structure
 - Additional primitive types (meshes, cubes)
 - Interactive preview window
+
+---
+## ✉️ Contact
+- **Portfolio**: [blackrece.co.uk](https://blackrece.co.uk)
+- **LinkedIn**: [linkedin.com/in/blackrece](https://www.linkedin.com/in/blackrece/)
+- **GitHub**: [github.com/BlackRece](https://github.com/BlackRece)
+
+## ✉️ Contact
+[![Portfolio](https://img.shields.io/badge/Portfolio-blackrece.co.uk-%23000000.svg)](https://blackrece.co.uk)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin)](https://linkedin.com/in/blackrece)
+
+[![GitHub](https://img.shields.io/badge/GitHub-%23181717.svg?logo=github)](https://github.com/BlackRece)
+
+---
+
+Enjoy the project? Star the repo ⭐ to support development!
